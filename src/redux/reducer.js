@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import actions from "./action"
 
 const intialValue = {
     users: [],
@@ -17,7 +18,21 @@ const intialValue = {
 }
 
 function reducer(state = intialValue, action) {
-    return state;
+    switch (action.type) {
+        case actions.register:
+            return state = { ...state, 
+                users: [...state.users, action.payload]
+            }
+        case "userName": 
+            return state = {...state, register: {userName: action.payload}}
+        case "email": 
+            return state = {...state, register: {email: action.payload}}
+        case "password": 
+            return state = {...state, register: {password: action.payload}}
+        case "passwordConfirm": 
+            return state = {...state, register: {passwordConfirm: action.payload}}
+        default: return state;
+    }
 }
 
 
